@@ -1,0 +1,132 @@
+<div id="sidebar" class="sidebar                  responsive">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <?php
+
+    use Zend\Session\Container;
+
+$userContainer = new Container('user');
+    $user = $userContainer->utilisateur;
+    if($user->isAdmin==1){
+    ?>
+
+    <ul class="nav nav-list">
+
+        <li class="">
+            <a href="/user">
+                <i class="menu-icon fa fa-users"></i>
+                <span class="menu-text"> Gestion utilisateurs </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        <li class="">
+            <a href="/gouvernorat">
+                <i class="menu-icon glyphicon glyphicon-flag"></i>
+                <span class="menu-text"> Gestion Gouvernorat </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        <li class="">
+            <a href="/delegation">
+                <i class="menu-icon glyphicon glyphicon-th"></i>
+                <span class="menu-text"> Gestion  Municipalités </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        <li class="">
+            <a href="/lists">
+                <i class="menu-icon fa fa-folder"></i>
+                <span class="menu-text"> Gestion Listes </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+
+
+    </ul>
+    
+    <?php } 
+     if($user->isAdmin==2){
+    
+    ?>
+     <ul class="nav nav-list">
+
+     
+        <li class="">
+            <a href="/lists/cheflists">
+                <i class="menu-icon fa fa-folder"></i>
+                <span class="menu-text"> Gestion Listes </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+
+
+    </ul>
+    
+     <?php } 
+     if($user->isAdmin==3){
+    
+    ?>
+     <ul class="nav nav-list">
+
+     
+        <li class="">
+            <a href="/lists/corlists">
+                <i class="menu-icon fa fa-folder"></i>
+                <span class="menu-text"> Gestion Listes </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+
+
+    </ul>
+    
+    
+    <?php } 
+     if($user->isAdmin==4){
+    
+    ?>
+     <ul class="nav nav-list">
+
+     
+        <li class="">
+            <a href="/lists/superlists">
+                <i class="menu-icon fa fa-folder"></i>
+                <span class="menu-text"> Gestion Listes </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+
+
+    </ul>
+    
+     <?php } ?>
+
+    <!-- #section:basics/sidebar.layout.minimize -->
+    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+        <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+    </div>
+
+    <!-- /section:basics/sidebar.layout.minimize -->
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'collapsed')
+        } catch (e) {
+        }
+    </script>
+</div>

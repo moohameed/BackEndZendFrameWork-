@@ -1,0 +1,63 @@
+<div class="page-header">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                <?php echo $this->translate('Choisir un type'); ?> 
+
+            </h1>
+        </div><!-- /.page-header -->
+
+
+        <?php
+        $form = $this->form;
+        $form->setAttribute('action', $this->url('user', array('action' => 'selecttype')));
+        $form->prepare();
+
+        echo $this->form()->openTag($form) . PHP_EOL;
+        ?>
+       
+
+        
+        <div class=" col-xs-12 col-lg-12">
+            <div class="profile-user-info profile-user-info-striped">
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        Type utilisateur
+                    </div>
+                     <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formElement($form->get('isAdmin'));
+                            echo $this->formElementErrors($form->get('isAdmin'));
+                            ?></span>
+                    </div>
+
+                  
+                </div>
+               
+
+
+            </div>
+
+        </div>
+
+    
+        
+        
+        
+        <div class="space-20"></div>
+        <div style="text-align: right;">
+            <button class="btn btn-primary" style="  margin-right: 5px;">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                <a style="  color: white;"  href="/list"  >
+                    <?php echo $this->translate('Retour'); ?>
+                </a>   
+            </button>
+            <?php
+            echo $this->formInput($form->get('submit'));
+            echo $this->formElementErrors($form->get('submit'));
+            ?>
+
+
+        </div>
+    </div>
+</div>

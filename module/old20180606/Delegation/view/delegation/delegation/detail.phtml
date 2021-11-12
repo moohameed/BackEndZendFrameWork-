@@ -1,0 +1,138 @@
+<div class="page-header">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                <?php echo $this->translate('Utilisateur'); ?> 
+
+            </h1>
+        </div>
+
+<div class=" col-xs-12 col-lg-6">
+    <div class="profile-user-info profile-user-info-striped">
+        <div class="profile-info-row">
+            <div class="profile-info-name">
+Nom            </div>
+
+            <div class="profile-info-value">
+                <span  id="username">
+
+                    <?php echo $this->escapeHtml($user->nomUser); ?>
+
+                </span>
+            </div>
+        </div>
+
+        <div class="profile-info-row">
+            <div class="profile-info-name"> Prénom </div>
+
+            <div class="profile-info-value">
+                <span  id="country"><?php
+                    echo $this->escapeHtml($user->prenomUser);
+                    ?></span>
+            </div>
+        </div>
+
+
+       
+        
+ <div class="profile-info-row">
+            <div class="profile-info-name"> Lieu de naissance	 </div>
+
+            <div class="profile-info-value">
+                <span  id="country"><?php
+                                       echo $this->escapeHtml($user->lieuNaisUser);
+
+                    ?>        
+                </span>
+            </div>
+        </div>
+           <div class="profile-info-row">
+            <div class="profile-info-name"> Date de naissance  </div>
+
+            <div class="profile-info-value">
+                <span  id="about"> <?php echo $this->escapeHtml($user->dateNaisUser);
+                    ?></span>
+            </div>
+        </div>
+   
+         <div class="profile-info-row">
+            <div class="profile-info-name"> E-mail	 </div>
+
+            <div class="profile-info-value">
+                <span  id="country"><?php
+                                       echo $this->escapeHtml($user->mailUser);
+
+                    ?>        
+                </span>
+            </div>
+        </div>
+</div>
+</div>
+    
+<div class=" col-xs-12 col-lg-6">
+    <div class="profile-user-info profile-user-info-striped">
+       
+        
+        
+
+        <div class="profile-info-row">
+            <div class="profile-info-name"> login </div>
+
+            <div class="profile-info-value">
+                <span  id="country"><?php
+                    echo $this->escapeHtml($user->login);
+                    ?></span>
+            </div>
+        </div>
+
+        <div class="profile-info-row">
+            <div class="profile-info-name"> 
+                <div class="profile-info-value"> Tye d'utilisateur</div>
+                <span  id="country">
+         <?php    switch ($user->isAdmin) {
+                                            case 1:
+                                                echo "Admin";
+                                                break;
+                                            case 2:
+                                                echo "Validateur";
+                                                break;
+                                            case 3:
+                                                echo "Employé";
+                                                break;
+                                        }
+           ?> </div>
+
+           
+        </div>
+        <div class="profile-info-row">
+            <div class="profile-info-name"> Etat </div>
+
+            <div class="profile-info-value">
+                <span  id="country"><?php
+                  
+                                        if ($user->etat == 1) {
+                                            echo $this->translate('Actif');
+                                        } else {
+                                            echo $this->translate('Inactif');
+                                        }    
+                                           ?>
+                </span>
+            </div>                   
+        </div>
+
+    </div>
+</div>
+
+<br> 
+
+<div class="space-20"></div>
+<div style="text-align: right;">
+<button class="btn btn-primary" style="margin-right: 5px; ">
+     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    <a style="  color: white;"  href="/user"  >
+                        <?php echo $this->translate('Retour'); ?>
+                    </a>   
+</button>
+</div>
+    </div>
+</div>

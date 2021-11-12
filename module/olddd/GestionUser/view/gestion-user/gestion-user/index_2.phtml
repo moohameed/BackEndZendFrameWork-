@@ -1,0 +1,386 @@
+<?php
+$title = $this->translate('Users');
+$this->headTitle($title);
+?>
+
+
+
+
+<div class="page-content-area">
+    <div class="page-header">
+        <h1>
+            <?php echo $this->translate('Gestion utilisateurs : '); ?> 
+
+        </h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+
+
+
+            <table id="grid-table"></table>
+
+            <div id="grid-pager"></div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>" + "<" + "/script>");    </script>
+
+
+    <!-- page specific plugin scripts -->
+    <script src="/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+    <script src="/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+    <script src="/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+
+
+
+    <!-- the following scripts are used in demo only for onpage help and you don't need them -->
+    <link rel="stylesheet" href="../assets/css/ace.onpage-help.css" />
+    <link rel="stylesheet" href="../docs/assets/js/themes/sunburst.css" />
+
+    <script type="text/javascript"> ace.vars['base'] = '..';</script>
+    <script src="/assets/js/ace/elements.onpage-help.js"></script>
+    <script src="/assets/js/ace/ace.onpage-help.js"></script>
+    <script src="/docs/assets/js/rainbow.js"></script>
+    <script src="/docs/assets/js/language/generic.js"></script>
+    <script src="/docs/assets/js/language/html.js"></script>
+    <script src="/docs/assets/js/language/css.js"></script>
+    <script src="/docs/assets/js/language/javascript.js"></script>
+    <script type="text/javascript">
+                var grid_data =
+                [
+                {id:"1", name:"Desktop Computer", note:"note", stock:"Yes", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"2", name:"Laptop", note:"Long text ", stock:"Yes", ship:"InTime", sdate:"2007-12-03"},
+                {id:"3", name:"LCD Monitor", note:"note3", stock:"Yes", ship:"TNT", sdate:"2007-12-03"},
+                {id:"4", name:"Speakers", note:"note", stock:"No", ship:"ARAMEX", sdate:"2007-12-03"},
+                {id:"5", name:"Laser Printer", note:"note2", stock:"Yes", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"6", name:"Play Station", note:"note3", stock:"No", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"7", name:"Mobile Telephone", note:"note", stock:"Yes", ship:"ARAMEX", sdate:"2007-12-03"},
+                {id:"8", name:"Server", note:"note2", stock:"Yes", ship:"TNT", sdate:"2007-12-03"},
+                {id:"9", name:"Matrix Printer", note:"note3", stock:"No", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"10", name:"Desktop Computer", note:"note", stock:"Yes", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"11", name:"Laptop", note:"Long text ", stock:"Yes", ship:"InTime", sdate:"2007-12-03"},
+                {id:"12", name:"LCD Monitor", note:"note3", stock:"Yes", ship:"TNT", sdate:"2007-12-03"},
+                {id:"13", name:"Speakers", note:"note", stock:"No", ship:"ARAMEX", sdate:"2007-12-03"},
+                {id:"14", name:"Laser Printer", note:"note2", stock:"Yes", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"15", name:"Play Station", note:"note3", stock:"No", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"16", name:"Mobile Telephone", note:"note", stock:"Yes", ship:"ARAMEX", sdate:"2007-12-03"},
+                {id:"17", name:"Server", note:"note2", stock:"Yes", ship:"TNT", sdate:"2007-12-03"},
+                {id:"18", name:"Matrix Printer", note:"note3", stock:"No", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"19", name:"Matrix Printer", note:"note3", stock:"No", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"20", name:"Desktop Computer", note:"note", stock:"Yes", ship:"FedEx", sdate:"2007-12-03"},
+                {id:"21", name:"Laptop", note:"Long text ", stock:"Yes", ship:"InTime", sdate:"2007-12-03"},
+                {id:"22", name:"LCD Monitor", note:"note3", stock:"Yes", ship:"TNT", sdate:"2007-12-03"},
+                {id:"23", name:"Speakers", note:"note", stock:"No", ship:"ARAMEX", sdate:"2007-12-03"}
+                ];
+                var subgrid_data =
+                [
+                {id:"1", name:"sub grid item 1", qty: 11},
+                {id:"2", name:"sub grid item 2", qty: 3},
+                {id:"3", name:"sub grid item 3", qty: 12},
+                {id:"4", name:"sub grid item 4", qty: 5},
+                {id:"5", name:"sub grid item 5", qty: 2},
+                {id:"6", name:"sub grid item 6", qty: 9},
+                {id:"7", name:"sub grid item 7", qty: 3},
+                {id:"8", name:"sub grid item 8", qty: 8}
+                ];
+                jQuery(function($) {
+                var grid_selector = "#grid-table";
+                        var pager_selector = "#grid-pager";
+                        //resize to fit page size
+                        $(window).on('resize.jqGrid', function () {
+                $(grid_selector).jqGrid('setGridWidth', $(".page-content").width());
+                })
+                        //resize on sidebar collapse/expand
+                        var parent_column = $(grid_selector).closest('[class*="col-"]');
+                        $(document).on('settings.ace.jqGrid', function(ev, event_name, collapsed) {
+                if (event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed') {
+                //setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+                setTimeout(function() {
+                $(grid_selector).jqGrid('setGridWidth', parent_column.width());
+                }, 0);
+                }
+                })
+
+
+
+                        jQuery(grid_selector).jqGrid({
+                //direction: "rtl",
+
+                //subgrid options
+                subGrid : true,
+                        //subGridModel: [{ name : ['No','Item Name','Qty'], width : [55,200,80] }],
+                        //datatype: "xml",
+                        subGridOptions : {
+                        plusicon : "ace-icon fa fa-plus center bigger-110 blue",
+                                minusicon  : "ace-icon fa fa-minus center bigger-110 blue",
+                                openicon : "ace-icon fa fa-chevron-right center orange"
+                        },
+                        //for this example we are using local data
+                        subGridRowExpanded: function (subgridDivId, rowId) {
+                        var subgridTableId = subgridDivId + "_t";
+                                $("#" + subgridDivId).html("<table id='" + subgridTableId + "'></table>");
+                                $("#" + subgridTableId).jqGrid({
+                        datatype: 'local',
+                                data: subgrid_data,
+                                colNames: ['No', 'Item Name', 'Qty'],
+                                colModel: [
+                                { name: 'id', width: 50 },
+                                { name: 'name', width: 150 },
+                                { name: 'qty', width: 50 }
+                                ]
+                });
+                        },
+                        url:'/user/listeuserws',
+                        datatype: "json",
+                        mtype: 'POST',
+                        colNames: [
+                                '<?php echo $this->translate('Id Site'); ?>',
+                                '<?php echo $this->translate('Id Transaction'); ?>',
+                                '<?php echo $this->translate('Id Transaction'); ?>',
+                                '<?php echo $this->translate('Site'); ?>',
+                                '<?php echo $this->translate('Nom'); ?>',
+                                '<?php echo $this->translate('Prénom'); ?>',
+                                '<?php echo $this->translate('Montant'); ?>',
+                                '<?php echo $this->translate('Devise'); ?>',
+                                '<?php echo $this->translate('Date de transaction'); ?>',
+                                '<?php echo $this->translate('TERMINAL'); ?>',
+                                '<?php echo $this->translate('Etat'); ?>',
+                        ],
+                        colModel: [
+                        {name:'idSite', index:'gpg_transaction.idSite', hidden:true, width:150, align:'center', sortable:true, editable: false, searchoptions: {searchhidden:false}},
+                        {name:'idTransaction', index:'gpg_transaction.idTransaction', hidden:true, width:150, align:'center', sortable:true, editable: false, searchoptions: {searchhidden:false}},
+                        {name:'transactionIdentifier',hidden:true,search:false,index:'gpg_transaction.transactionIdentifier', width:150, align:'left', sortable:true, editable: false, searchoptions: {sopt:['cn', 'eq']}},
+                        {name:'url', index:'gpg_site.url', width:220, align:'left', sortable:true, editable: false, search : false},
+                        {name:'surname', index:'gpg_transaction.surname',hidden:true,search:false, width:125, editable: true, searchoptions: {sopt:['cn', 'eq']}},
+                        {name:'givenName', index:'gpg_transaction.givenName',hidden:true,search:false, width:125, editable: true, searchoptions: {sopt:['cn', 'eq']}},
+                        {name:'amount', index:'gpg_transaction.amount', width:70, align:'right', search:false, searchoptions: {sopt:['lt', 'gt', 'eq']}},
+                        {name:'Devise', index:'gpg_transaction.currencyCode', width:70, search:false, align:'center' },
+                        {name:'dateTransaction', index:'gpg_transaction.dateTransaction', width:150, editable: true, searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat: 'yy-mm-dd'}); }, sopt:['cn', 'lt', 'ge']}, align:'center'},
+                        {name:'terminal', index:'gpg_transaction.surname', hidden:true,hidden:true,search:false, width:100, editable: true, searchoptions: {sopt:['cn', 'eq']}},
+                        {name:'result', index:'gpg_transaction.result', width:90, editable: true, stype:'select', searchoptions:{value:{}, sopt:['eq']}},
+                        ],
+                        height: 250,
+                        viewrecords : true,
+                        rowNum:10,
+                        rowList:[10, 20, 30],
+                        pager : pager_selector,
+                        altRows: true,
+                        //toppager: true,
+
+                        multiselect: true,
+                        //multikey: "ctrlKey",
+                        multiboxonly: true,
+                        loadComplete : function() {
+                        var table = this;
+                                setTimeout(function(){
+                                //styleCheckbox(table);
+
+                                //updateActionIcons(table);
+                                //updatePagerIcons(table);
+                                //enableTooltips(table);
+                                }, 0);
+                        },
+                        editurl: "/dummy.html", //nothing is saved
+                        caption: "jqGrid with inline editing"
+
+                        //,autowidth: true,
+
+
+                        /**
+                         ,
+                         grouping:true, 
+                         groupingView : { 
+                         groupField : ['name'],
+                         groupDataSorted : true,
+                         plusicon : 'fa fa-chevron-down bigger-110',
+                         minusicon : 'fa fa-chevron-up bigger-110'
+                         },
+                         caption: "Grouping"
+                         */
+
+                });
+                        $(window).triggerHandler('resize.jqGrid'); //trigger window resize to make the grid get the correct size
+
+
+
+                        //enable search/filter toolbar
+                                //jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
+                                        //jQuery(grid_selector).filterToolbar({});
+
+
+                                                //switch element when editing inline
+                                                        function aceSwitch(cellvalue, options, cell) {
+                                                        setTimeout(function(){
+                                                        $(cell).find('input[type=checkbox]')
+                                                                .addClass('ace ace-switch ace-switch-5')
+                                                                .after('<span class="lbl"></span>');
+                                                        }, 0);
+                                                        }
+                                                //enable datepicker
+                                                function pickDate(cellvalue, options, cell) {
+                                                setTimeout(function(){
+                                                $(cell).find('input[type=text]')
+                                                        .datepicker({format:'yyyy-mm-dd', autoclose:true});
+                                                }, 0);
+                                                }
+
+
+                                                //navButtons
+                                                jQuery(grid_selector).jqGrid('navGrid', pager_selector,
+                                                { 	//navbar options
+                                                edit: true,
+                                                        editicon : 'ace-icon fa fa-pencil blue',
+                                                        add: true,
+                                                        addicon : 'ace-icon fa fa-plus-circle purple',
+                                                        del: true,
+                                                        delicon : 'ace-icon fa fa-trash-o red',
+                                                        search: true,
+                                                        searchicon : 'ace-icon fa fa-search orange',
+                                                        refresh: true,
+                                                        refreshicon : 'ace-icon fa fa-refresh green',
+                                                        view: true,
+                                                        viewicon : 'ace-icon fa fa-search-plus grey',
+                                                },
+                                                {
+                                                //edit record form
+                                                //closeAfterEdit: true,
+                                                //width: 700,
+                                                recreateForm: true,
+                                                        beforeShowForm : function(e) {
+                                                        var form = $(e[0]);
+                                                                form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                                                                style_edit_form(form);
+                                                        }
+                                                },
+                                                {
+                                                //new record form
+                                                //width: 700,
+                                                closeAfterAdd: true,
+                                                        recreateForm: true,
+                                                        viewPagerButtons: false,
+                                                        beforeShowForm : function(e) {
+                                                        var form = $(e[0]);
+                                                                form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+                                                                .wrapInner('<div class="widget-header" />')
+                                                                style_edit_form(form);
+                                                        }
+                                                },
+                                                {
+                                                //delete record form
+                                                recreateForm: true,
+                                                        beforeShowForm : function(e) {
+                                                        var form = $(e[0]);
+                                                                if (form.data('styled')) return false;
+                                                                form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                                                                style_delete_form(form);
+                                                                form.data('styled', true);
+                                                        },
+                                                        onClick : function(e) {
+                                                        alert(1);
+                                                        }
+                                                },
+                                                {
+                                                //search form
+                                                recreateForm: true,
+                                                        afterShowSearch: function(e){
+                                                        var form = $(e[0]);
+                                                                form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                                                                style_search_form(form);
+                                                        },
+                                                        afterRedraw: function(){
+                                                        style_search_filters($(this));
+                                                        }
+                                                ,
+                                                        multipleSearch: true,
+                                                        /**
+                                                         multipleGroup:true,
+                                                         showQuery: true
+                                                         */
+                                                },
+                                                {
+                                                //view record form
+                                                recreateForm: true,
+                                                        beforeShowForm: function(e){
+                                                        var form = $(e[0]);
+                                                                form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                                                        }
+                                                }
+                                                )
+
+                                                        //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
+
+                                                        $(document).on('ajaxloadstart', function(e) {
+                                                $(grid_selector).jqGrid('GridUnload');
+                                                        $('.ui-jqdialog').remove();
+                                                });
+                                                });
+    </script>
+
+    <br><br><br><br><br><br>
+
+
+
+    <p><a href="<?php
+            echo $this->url('user', array(
+                'action' => 'add'));
+            ?>"> 
+
+<div class="page-header">
+        <h1>
+            <?php echo $this->translate('Add new user '); ?> 
+
+        </h1>
+    </div>
+</a></p>
+
+    <table class="table">
+        <tr>
+            <th>Nom </th>
+            <th>Prenom </th>
+            <th>Mail</th>
+            <th>Adresse </th>
+            <th>Date de naissance</th>
+            <th>Lieu de Naissance</th>
+            <th>télephone</th>
+            <th>Image</th>
+            <th>Login</th>
+
+
+            <th>Type user</th>
+
+            <th>Actions</th>
+        </tr>
+<?php foreach ($users as $user) : ?>
+            <tr>
+                <td><?php echo $this->escapeHtml($user->nomUser); ?></td>
+                <td><?php echo $this->escapeHtml($user->prenomUser); ?></td>
+                <td><?php echo $this->escapeHtml($user->mailUser); ?></td>
+                <td><?php echo $this->escapeHtml($user->adresseUser); ?></td>
+                <td><?php echo $this->escapeHtml($user->dateNaisUser); ?></td>
+                <td><?php echo $this->escapeHtml($user->lieuNaisUser); ?></td>
+                <td><?php echo $this->escapeHtml($user->telUser); ?></td>
+                <td><?php echo $this->escapeHtml($user->image); ?></td>
+                <td><?php echo $this->escapeHtml($user->login); ?></td>
+
+
+                <td><?php echo $this->escapeHtml($user->isAdmin); ?></td>
+
+                <td>
+                    <a href="<?php echo $this->url('user', array('action' => 'edit', 'idUser' => $user->idUser));
+    ?>"><?php echo $this->translate('Edit'); ?></a>
+                    <a href="<?php echo $this->url('user', array('action' => 'delete', 'idUser' => $user->idUser));
+    ?>"><?php echo $this->translate('Delete'); ?></a>
+                </td>
+            </tr>
+<?php endforeach; ?>
+    </table>
+
+
+
+</div>
+
+

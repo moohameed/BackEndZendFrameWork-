@@ -1,0 +1,412 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#eventsform').submit(function (e) {
+            e.preventDefault();
+
+            var template = '<li><div class=" col-xs-12 col-lg-12">';
+            template += '   <div class=" col-xs-12 col-lg-5">';
+            template += '      <div class="profile-user-info profile-user-info-striped">';
+            template += '        <div class="profile-info-row">';
+            template += '          <div class="profile-info-name"> Nom et prenom </div>';
+
+            template += '        <div class="profile-info-value">';
+            template += '           <span class="editable editable-click" id="country">';
+            template += '                <input type="text" readonly name="usersNon[]" class="usersNon form-control"  required value="' + $('#price').val() + '" />';
+            template += '               </span>';
+            template += '      </div>';
+            template += '  </div>';
+            template += ' </div>';
+            template += ' </div>';
+            template += ' <div class=" col-xs-12 col-lg-5">';
+            template += '  <div class="profile-user-info profile-user-info-striped">';
+            template += '   <div class="profile-info-row">';
+            template += '       <div class="profile-info-name"> Poste </div>';
+
+            template += '      <div class="profile-info-value">';
+            template += '          <span class="editable editable-click" id="country">';
+
+            template += '              <input type="text" readonly name="usersPost[]" class="usersPost form-control"  required value="' + $('#location').val() + '" />';
+            template += '          </span>';
+            template += '  </div>';
+            template += ' </div>';
+            template += '</div>';
+            template += ' </div>';
+            template += ' <div class=" col-xs-12 col-lg-2">';
+            template += '    <input type="button" name="edit" class="edit btn btn-warning" value="Edit" /><input type="button" name="edit" class="delete btn btn-danger" value="Delete" />';
+            template += ' </div>';
+
+            template += '  </div></li>';
+
+
+
+
+
+
+
+
+
+
+            /* var template = '<li><input type="text" readonly name="prices[]" class="prices" value="' + $('#price').val() + '" />';
+             template += '<input type="text" readonly name="locations[]" class="locations" value="' + $('#location').val() + '" />';
+             template += '<input type="button" name="edit" class="edit" value="Edit" /><input type="button" name="edit" class="delete" value="Delete" />';*/
+            $('.event-control').append(template);
+             $('#price').val("");
+                    $('#location').val("");
+
+        });
+        $(document).on('click', '.delete', function (e) {
+
+            $(this).closest('li').fadeOut('slow').remove();
+        });
+        $(document).on('click', '.edit', function (e) {
+
+            $(this).closest('li').find('input').attr('readonly', false);
+        });
+    });
+
+</script>
+<div class="page-header">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                <?php echo $this->translate('Modifier List'); ?> 
+
+            </h1>
+        </div><!-- /.page-header -->
+
+        <h2>
+            Users
+
+        </h2>
+        <form id="eventsform" name="eventsform">
+
+            <div class=" col-xs-12 col-lg-12">
+                <div class=" col-xs-12 col-lg-5">
+                    <div class="profile-user-info profile-user-info-striped">
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> Nom et prenom </div>
+
+                            <div class="profile-info-value">
+                                <span class="editable editable-click" id="country">
+                                    <input type="text" name="price" id="price" class="form-control" required />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-xs-12 col-lg-5">
+                    <div class="profile-user-info profile-user-info-striped">
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> Poste </div>
+
+                            <div class="profile-info-value">
+                                <span class="editable editable-click" id="country">
+
+                                    <input type="text" name="location"  id="location" class="form-control" required />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-xs-12 col-lg-2">
+                    <input type="submit" name="register" value="Add" class="btn btn-success" id="register"/>
+                </div>
+
+            </div>
+        </form>
+
+
+
+
+        <?php
+        $form = $this->form;
+        $form->setAttribute('action', $this->url('lists', array('action' => 'edit', 'id' => $id)));
+        $form->prepare();
+
+        echo $this->form()->openTag($form) . PHP_EOL;
+        ?>
+        <?php echo $this->formInput($form->get('list_id')); ?>
+        <div class=" col-xs-12 col-lg-12">
+
+            <?php if ($this->messageErreur == "true") {
+                ?>
+                <div class="alert alert-block alert-danger">
+                    <p style="color: red;font-weight: bold;">
+                        <?php echo $this->translate($this->message) ?>
+                    </p>
+                </div>
+            <?php } ?>
+
+
+
+            <?php if ($this->success == "true") {
+                ?>
+
+                <div class="alert alert-block alert-success">
+                    <p style="font-weight: bold;">
+                        <?php echo $this->translate($this->messageSuccess) ?>
+                    </p>
+                </div>
+            <?php } ?>
+
+        </div>
+
+        <div class="event-control">
+            
+             <?php 
+                $nbrUsers = sizeof($listeusers);
+                if ($nbrUsers > 0) {
+                    foreach ($listeusers as $userp){
+                       ?>  
+             <li><div class=" col-xs-12 col-lg-12">
+                    <div class=" col-xs-12 col-lg-5">
+                        <div class="profile-user-info profile-user-info-striped">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Nom et prenom </div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click" id="country">
+                                        <input type="text" readonly name="usersNon[]" class="usersNon form-control"  required value="<?php echo $userp["nom"] ?>" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12 col-lg-5">
+                        <div class="profile-user-info profile-user-info-striped">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Poste </div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click" id="country">
+
+                                        <input type="text" readonly name="usersPost[]" class="usersPost form-control"  required value="<?php echo $userp["post"] ?>" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12 col-lg-2">
+                        <input type="button" name="edit" class="edit btn btn-warning" id="gritter-max3" value="Edit" />
+                        <input type="button" name="edit" class="delete btn btn-danger" id="gritter-error"  value="Delete" />
+                    </div>
+
+                </div></li>      
+            
+            
+             <?php 
+                    }
+                }
+             
+             ?>
+            
+           
+
+        </div>
+
+        <div class=" col-xs-12 col-lg-6">
+            <div class="profile-user-info profile-user-info-striped">
+
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_idDelegation')); ?>  </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="about"> <?php
+                            echo $this->formElement($form->get('list_idDelegation'));
+                            echo $this->formElementErrors($form->get('list_idDelegation'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_type')); ?>  </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="about"> <?php
+                            echo $this->formElement($form->get('list_type'));
+                            echo $this->formElementErrors($form->get('list_type'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        <?php echo $this->formLabel($form->get('list_nom')); ?> 
+                    </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="username">
+                            <?php
+                            echo $this->formInput($form->get('list_nom'));
+                            echo $this->formElementErrors($form->get('list_nom'));
+                            ?>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        <?php echo $this->formLabel($form->get('list_num')); ?> 
+                    </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="username">
+                            <?php
+                            echo $this->formInput($form->get('list_num'));
+                            echo $this->formElementErrors($form->get('list_num'));
+                            ?>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 
+                        <?php echo $this->formLabel($form->get('list_tete')); ?> 
+                    </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="username">
+                            <?php
+                            echo $this->formInput($form->get('list_tete'));
+                            echo $this->formElementErrors($form->get('list_tete'));
+                            ?>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 
+                        <?php echo $this->formLabel($form->get('list_chaise')); ?> 
+                    </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="username">
+                            <?php
+                            echo $this->formInput($form->get('list_chaise'));
+                            echo $this->formElementErrors($form->get('list_chaise'));
+                            ?>
+                        </span>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class=" col-xs-12 col-lg-6">
+            <div class="profile-user-info profile-user-info-striped">
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_logo')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formElement($form->get('list_logo'));
+                            echo $this->formElementErrors($form->get('list_logo'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_image')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formElement($form->get('list_image'));
+                            echo $this->formElementErrors($form->get('list_image'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_imageGroup')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formElement($form->get('list_imageGroup'));
+                            echo $this->formElementErrors($form->get('list_imageGroup'));
+                            ?></span>
+                    </div>
+                </div>
+
+
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_valide')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formElement($form->get('list_valide'));
+                            echo $this->formElementErrors($form->get('list_valide'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_publie')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formElement($form->get('list_publie'));
+                            echo $this->formElementErrors($form->get('list_publie'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_vote')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formElement($form->get('list_vote'));
+                            echo $this->formElementErrors($form->get('list_vote'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('list_taux')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formElement($form->get('list_taux'));
+                            echo $this->formElementErrors($form->get('list_taux'));
+                            ?></span>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+        <div class="space-20"></div>
+        <hr>
+
+
+
+
+        <div class="space-20"></div>
+        <div style="text-align: right;">
+            <button class="btn btn-primary" style="  margin-right: 5px;">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                <a style="  color: white;"  href="/lists"  >
+                    <?php echo $this->translate('Retour'); ?>
+                </a>   
+            </button>
+            <?php
+            echo $this->formInput($form->get('submit'));
+            echo $this->formElementErrors($form->get('submit'));
+            ?>
+
+
+        </div>
+    </div>
+</div>

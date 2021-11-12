@@ -1,0 +1,175 @@
+.subActive
+{
+    font-weight: bold !important;
+    color : #000000 !important;
+}
+.subActives
+{
+    font-weight: bold !important;
+    text-decoration: none !important;
+    color: #000000 !important;
+}
+.subActives:hover
+{
+    font-weight: bold !important;
+    text-decoration: underline !important;
+    color: #000000 !important;
+}
+#alimentercompte
+{
+    color: #ccc   !important;
+    background: #ffffff   !important;
+    cursor: inherit !important;
+}
+#wrapper
+{
+    border: #A6C9E2 solid 1px;
+    border-radius: 5px;
+}
+#wrapper a {
+    text-decoration: none;
+}
+#wrapper ul, ul ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#wrapper {	
+    width: 100%;
+    font-size: 0.8125em;
+}
+.menu {
+    width: auto;
+    height: auto;
+}
+.menu > li > a {
+    background-color: #616975;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(114, 122, 134)),to(rgb(80, 88, 100)));
+    background-image: -webkit-linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background-image: -moz-linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background-image: -o-linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background-image: -ms-linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background-image: linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background: url(/img/ui-bg_glass_85_dfeffc_1x400.png) repeat-x scroll 50% 50% #DFEFFC;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#727a86', EndColorStr='#505864');
+    border-bottom: 1px solid #CCCCCC;
+    width: 100%;
+    height: 2.75em;
+    display: block;
+    line-height: 2.75em;
+    text-indent: 0.75em;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    color: #fff;
+    color:#2E6E9E;
+}
+.menu ul li a {
+    background: #fff;
+    border-bottom: 1px solid #efeff0;
+    width: 100%;
+    height: 2.75em;
+    line-height: 2.75em;
+    text-indent: 2.75em;
+    display: block;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.923em;
+    font-weight: 400;
+    color: #878d95;
+}
+.menu ul li:last-child a {
+    border-bottom: 1px solid #A6C9E2;
+}
+.menu > li > a:hover, .menu > li > a.active {
+    background-color: #35afe3;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(69, 199, 235)),to(rgb(38, 152, 219)));
+    background-image: -webkit-linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    background-image: -moz-linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    background-image: -o-linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    background-image: -ms-linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    background-image: linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#45c7eb', EndColorStr='#2698db');
+    background:  repeat-x scroll 50% 50% #0078ae;
+    border-bottom: 1px solid #CCCCCC;
+    color: #FFF;
+}
+.menu > li > a.active {
+    border-bottom: 1px solid #A6C9E2;
+}
+.menu > li > a:before {
+    content: '';
+    background-repeat: no-repeat;
+    font-size: 36px;
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin: -.5em 0 0 0;
+}
+.item1 > a:before {
+    background-image: url();
+    background-position: 0 0;
+}
+.item2 > a:before {
+    background-image: url();
+    background-position: -38px 0;
+}
+.menu > li > a span {
+    font-size: 0.857em; 
+    display: inline-block;
+    position: absolute;
+    right: 1em;
+    top: 50%; 
+    line-height: 1em;
+    height: 1em;
+    padding: .4em .6em;
+    margin: -.8em 0 0 0; 
+    color: #fff;
+    text-indent: 0;
+    text-align: center;
+    -webkit-border-radius: .769em;
+    -moz-border-radius: .769em;
+    border-radius: .769em;
+    font-weight: 500;
+}
+.menu > li > a:hover span, .menu > li a.active span {
+    /*background: #2173a1;*/
+}
+.menu > li > ul li a:before{
+    content: '▶';
+    font-size: 8px;
+    color: #bcbcbf;
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    top: 0;
+    left: -2.7em;
+}
+.menu > li > ul li:hover a,
+.menu > li > ul li:hover a span,
+.menu > li > ul li:hover a:before {
+    color: #32373D;
+}
+.menu ul > li > a span {
+    font-size: 0.857em; 
+    display: inline-block;
+    position: absolute;
+    right: 1em;
+    top: 50%; 
+    /*background: #fff;*/
+    border: 1px solid #d0d0d3;
+    line-height: 1em;
+    height: 1em;
+    padding: .4em .7em;
+    margin: -.9em 0 0 0; 
+    color: #878d95;
+    text-indent: 0;
+    text-align: center;
+    -webkit-border-radius: .769em;
+    -moz-border-radius: 769em;
+    border-radius: 769em;
+
+}

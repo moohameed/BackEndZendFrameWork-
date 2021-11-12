@@ -1,0 +1,133 @@
+html
+{
+    width: 100% !important;
+    margin: 0 !important;
+    overflow-x: hidden;
+}
+body
+{
+    width: 100% !important;   
+    margin: 0 !important;
+}
+.FormRow{
+    float: left;
+    margin: 5px 0;
+}
+.FormRow > input{ 
+    //float: left;
+    margin: 5px 10px 5px 0 !important;
+}
+
+.partial
+{
+    width: 50%;
+}
+.full
+{
+    width: 100%;
+}
+.FormRow .titleDetails{
+    float: left;
+    width: 100%;
+}
+.FormRow .valeur{
+    float: left; 
+    width: 100%;
+}
+.FormRow label{
+ /*   width: 30% !important;
+    min-width: 230px;*/
+}
+.full label{
+   /* width: 30% !important;
+    min-width: 230px;*/
+}
+
+
+.partial label{
+   /* width: 100% !important;
+    min-width: 230px;*/
+}
+.full label{
+    width: 30% !important;
+    min-width: 230px;
+}
+.FormRow label input{
+    margin-right: 12px;
+    
+}
+
+.FormRow .profile-info-value input,.FormRow .profile-info-value select,.FormRow .profile-info-value textArea{
+    width: 95%;
+}
+
+
+.autoDivRight{
+    float: right;
+    width: 50%;
+}
+
+.textbox h3,h2,h1
+{
+    color: #2679b5 !important;
+}
+
+.FormRow input[type="button"], input[type="submit"]
+{
+  background-color: #0078ae !important;
+  border-color: #6fb3e0;
+  border-width: 4px;
+    font-size: 13px;
+    line-height: 30px;
+    padding: 0px 11px;
+    background-image: none !important;
+    border: 0px solid;
+    border-radius: 0;
+    box-shadow: none !important;
+    color: #fff !important;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+}
+.FormRow input[type="button"]:hover, input[type="submit"]:hover
+{
+  background-color: #0078ae !important;
+  border-color: #0078ae;
+  border-width: 4px;
+    font-size: 13px;
+    line-height: 30px;
+    padding: 0px 11px;
+    background-image: none !important;
+    border: 0px solid;
+    border-radius: 0;
+    box-shadow: none !important;
+    color: #fff !important;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+}
+
+.erreurInput
+{
+   
+    color: rgb(255,0,37) !important;
+    font-weight: bold;
+}
+.error_input
+{
+    border-color: rgb(255, 0, 37) !important;
+    box-shadow: none;
+    color: rgb(255, 0, 37) !important;
+}
+.activecarte {
+    background-color: transparent;
+    color: #00722D !important;
+    display: table-cell;
+    font-weight: bold;
+    vertical-align: middle;
+    width: 110px;
+}

@@ -1,0 +1,41 @@
+<div class="page-header">
+    <div class="page-content-area">
+<div class="page-header">
+    <h1>
+        <?php echo $this->translate('Supprimer un utilisateur'); ?> 
+
+    </h1>
+</div><!-- /.page-header -->
+
+ <div class=" col-xs-12 col-lg-12">
+    <div class="profile-user-info profile-user-info-striped">
+        <div class="profile-info-row">
+            <div class="profile-info-name" style="text-align: left">
+                                    <p>Voulez vous vraiment supprimer l'utlisateur :
+                                        '<?php echo $this->escapeHtml($user->login); ?>' ?
+
+                                    </p>
+                                </div>
+                            </div>
+                            
+ 
+
+                <?php $url = $this->url('user', array('action' => 'delete','idUser'=>$this->idUser)); ?>
+
+        <form action="<?php echo $url; ?>" method="post">
+            <div class="profile-info-value">
+
+                <span class="editable editable-click" id="signup">
+
+                    <input type="hidden" name="idUser" value="<?php echo (int) $user->idUser; ?>" />
+                    <input type="submit" name="del" value="<?php echo $this->translate('Confirmer');?>" class="btn btn-primary btn-sm" />
+                    <input type="submit" name="del" value="<?php echo $this->translate('Annuler');?>" class="btn btn-primary btn-sm"/>
+                
+                </span>
+            </div>
+
+        </form>
+    </div>
+ </div>
+ </div>
+</div>

@@ -1,0 +1,107 @@
+<link rel="stylesheet" type="text/css" href="/datatable/media/css/jquery.dataTables.css">
+
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="/datatable/media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="/datatable/media/js/jquery.dataTables.js"></script>
+	
+	<script type="text/javascript" language="javascript" class="init">
+
+$(document).ready(function() {
+	$('#example').dataTable();
+} );
+
+	</script>	
+        <style>
+            .dataTables_info{
+               clear: inherit !important; 
+            }
+        </style>
+
+        <table style="clear: inherit" cellpadding="0" cellspacing="0" border="0" class="display" id="example" style="width:100%">
+				 <thead>
+                        <tr>
+                            <th>Login</th>
+                            <th>Nom </th>
+                            <th>Prenom </th>
+                            <th>Mail</th>
+                            <th>Adresse </th>
+                            <th>Date de naissance</th>
+                            <th>Lieu de Naissance</th>
+                            <th>télephone</th>
+                            <th>Type user</th>
+                            <th>Etat</th>
+                            <th>Action</th>
+                            
+                            </tr>
+                    </thead>
+
+				
+
+				<tbody>
+					 <?php foreach ($users as $user) : ?>
+                            <tr>
+                                <td><?php echo $this->escapeHtml($user->login); ?></td>
+                                <td><?php echo $this->escapeHtml($user->nomUser); ?></td>
+                                <td><?php echo $this->escapeHtml($user->prenomUser); ?></td>
+                                <td><?php echo $this->escapeHtml($user->mailUser); ?></td>
+                                <td><?php echo $this->escapeHtml($user->adresseUser); ?></td>
+                                <td><?php echo $this->escapeHtml($user->dateNaisUser); ?></td>
+                                <td><?php echo $this->escapeHtml($user->lieuNaisUser); ?></td>
+                                <td><?php echo $this->escapeHtml($user->telUser); ?></td>
+
+
+
+                                <td>
+                                    <?php
+                                    // echo $this->escapeHtml($user->isAdmin);
+                                    switch ($user->isAdmin) {
+                                       case 1:
+                                                echo "Chef du projet";
+                                                break;
+                                            case 2:
+                                                echo "Coordinateur";
+                                                break;
+                                            case 3:
+                                                echo "superviseur";
+                                                break;
+                                    }
+                                    ?>
+
+                                </td>
+                                <td>
+                                    <?php
+                                    if ($user->etat == 1) {
+                                        echo $this->translate('Actif');
+                                    } else {
+                                        echo $this->translate('Inactif');
+                                    }
+                                    ?>
+                                </td>
+
+
+
+
+                                <td>
+                                    <a href="<?php echo $this->url('user', array('action' => 'edit', 'idUser' => $user->idUser));
+                                    ?>" class="tooltip-success" data-rel="tooltip" title="edit" >
+                                        <?php echo $this->translate('Edit'); ?>
+
+                                        <span class="green">
+                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                        </span>
+                                    </a>
+                                    &nbsp;
+                                    <a href="<?php echo $this->url('user', array('action' => 'delete', 'idUser' => $user->idUser));
+                                    ?>" class="tooltip-error" data-rel="tooltip" title="delete" >
+                                        <?php echo $this->translate('Delete'); ?>
+                                        <span class="red">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+				</tbody>
+			</table>

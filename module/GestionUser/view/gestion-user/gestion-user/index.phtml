@@ -1,0 +1,221 @@
+<?php if ($user->isAdmin == 1) { ?>
+    <?php
+    $title = $this->translate('Users');
+    $this->headTitle($title);
+    ?>
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>" + "<" + "/script>");
+    </script>
+
+    <script src="/assets/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/js/jquery.dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        jQuery(function($) {
+        var oTable1 = $('#sample-table-2')
+                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+                .dataTable({
+
+                bAutoWidth: false,
+                        "aoColumns": [
+                        { "bSortable": false },
+                                null, null, null, null, null,
+                        { "bSortable": false }
+                        ],
+                        "aaSorting": [],
+                });
+        $(document).on('click', 'th input:checkbox', function(){
+        var that = this;
+        $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function(){
+                this.checked = that.checked;
+                $(this).closest('tr').toggleClass('selected');
+                });
+        });
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+        var $source = $(source);
+        var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+        var w1 = $parent.width();
+        var off2 = $source.offset();
+        //var w2 = $source.width();
+
+        if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+        return 'left';
+        }
+
+        })
+
+                function fnFeaturesInit ()
+                {
+
+                $('ul.limit_length>li').each(function(i) {
+                         if (i > 10) {
+                                 this.style.display = 'none';
+                             }
+                });
+                
+                $('ul.limit_length').append('<li class="css_link">Show more<\/li>');
+                
+                $('ul.limit_length li.css_link').click(function () {
+                $('ul.limit_length li').each(function(i) {
+                if (i > 5) {
+                this.style.display = 'list-item';
+                }
+                });
+                $('ul.limit_length li.css_link').css('display', 'none');
+                });
+                }
+
+
+        });
+    </script>
+
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                <?php echo $this->translate('Gestion utilisateurs  '); ?> 
+
+            </h1>
+        </div>
+        <p><a href="<?php
+            echo $this->url('user', array(
+                'action' => 'add'));
+            ?>"> <h2> <?php echo $this->translate('+ Ajouter Utilisateur'); ?></h3></a>
+        </p>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="modal-body no-padding">        
+                    <link rel="stylesheet" type="text/css" href="/datatable/media/css/jquery.dataTables.css">
+                   
+                    <script type="text/javascript" language="javascript" src="/datatable/media/js/jquery.js"></script>
+                    <script type="text/javascript" language="javascript" src="/datatable/media/js/jquery.dataTables.js"></script>
+
+                    <script type="text/javascript" language="javascript" class="init">
+
+        $(document).ready(function() {
+        $('#example').dataTable({
+        "bJQueryUI": true,
+                "sPaginationType": "full_numbers",
+                "sDom": '<"clear"><"H"Tflr>t<"F"ip>',
+                "oTableTools": { "sSwfPath": "/mediadatatab/swf/copy_cvs_xls_pdf.swf"},
+                "oLanguage": { "sUrl": "/mediadatatab/lange/haithemfr.txt" },
+        });
+        });
+                    </script>	
+                    <style>
+                        .dataTables_info{
+                            clear: inherit !important; 
+                        }
+                    </style>
+
+                    <table  id="example" style="width:100%">
+                        <thead>
+
+                            <tr>
+                                <th>Login</th>
+                                <th>Nom </th>
+                                <th>Prenom </th>
+                                <th>Mail</th>                              
+                                <th>télephone</th>
+                                <th>Type</th>
+                                <th>Etat</th>
+                                <th>Action</th>
+                        </thead>
+
+                        </tr>
+                        <tbody>
+
+
+                            <?php foreach ($users as $user) : ?>
+                                <tr>
+                                    <td><?php echo $this->escapeHtml($user->login); ?></td>
+                                    <td><?php echo $this->escapeHtml($user->nomUser); ?></td>
+                                    <td><?php echo $this->escapeHtml($user->prenomUser); ?></td>
+                                    <td><?php echo $this->escapeHtml($user->mailUser); ?></td>
+
+                                    <td><?php echo $this->escapeHtml($user->telUser); ?></td>
+
+
+
+                                    <td>
+                                        <?php
+                                        switch ($user->isAdmin) {
+                                            case 1:
+                                                echo "Admin";
+                                                break;
+                                            case 2:
+                                                echo "Chef du projet";
+                                                break;
+                                            case 3:
+                                                echo "Coordinateur";
+                                                break;
+                                             case 4:
+                                                echo "Superviseur";
+                                                break;
+                                        }
+                                        ?>
+
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if ($user->etat == 1) {
+                                            echo $this->translate('Actif');
+                                        } else {
+                                            echo $this->translate('Inactif');
+                                        }
+                                        ?>
+                                    </td>
+
+
+
+
+                                    <td>
+                                        <a href="<?php echo $this->url('user', array('action' => 'edit', 'idUser' => $user->idUser));
+                                        ?>" class="tooltip-success" data-rel="tooltip" title="edit" >
+                                           <?php echo $this->translate('Modifier'); ?>
+
+                                            <span class="green">
+                                                <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                            </span>
+                                        </a>
+                                        &nbsp;
+                                        <a href="<?php echo $this->url('user', array('action' => 'delete', 'idUser' => $user->idUser));
+                                           ?>" class="tooltip-error" data-rel="tooltip" title="delete" >
+                                           <?php echo $this->translate('Supprimer'); ?>
+                                            <span class="red">
+                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                            </span>
+                                        </a>
+                                        &nbsp;
+                                        <a href="<?php echo $this->url('user', array('action' => 'detail', 'idUser' => $user->idUser));
+                                           ?>" class="tooltip-error" data-rel="tooltip" title="<?php echo $this->translate('Détails'); ?>" >
+                                           <?php echo $this->translate('Détails'); ?>
+                                            <span class="orange">
+                                                <i class="glyphicon glyphicon-list"></i>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+<?php } ?>
+   

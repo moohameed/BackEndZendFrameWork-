@@ -1,0 +1,258 @@
+
+<div class="page-content-area">
+    <div class="page-header">
+        <h1>
+            <div>
+                <?php echo $this->translate('Profil'); ?> 
+            </div>
+
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+
+
+
+            <div>
+                <div id="user-profile-1" class="user-profile row">
+                    <div class="col-xs-12 col-sm-3 center">
+                        <div>
+                            <!-- #section:pages/profile.picture -->
+                            <span class="profile-picture">
+                                <img id="avatar" class="editable img-responsive editable-click editable-empty" alt="Avatar" 
+                                     src=" /img/Baladiti-2018-Mourakiboun.jpg">
+
+
+
+                                </img>
+                            </span>
+
+                            <!-- /section:pages/profile.picture -->
+                            <div class="space-4"></div>
+
+                            <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                                <div class="inline position-relative">
+                                    <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                                        <i class="ace-icon fa fa-circle light-green"></i>
+                                        &nbsp;
+                                        <span class="white"><?php echo $this->user->nomUser . ' ' . $this->user->prenomUser; ?></span>
+                                    </a>
+
+                                    <ul class="align-left dropdown-menu dropdown-caret dropdown-lighter">
+                                        <li class="dropdown-header"> Change Status </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <i class="ace-icon fa fa-circle green"></i>
+                                                &nbsp;
+                                                <span class="green">Available</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <i class="ace-icon fa fa-circle red"></i>
+                                                &nbsp;
+                                                <span class="red">Busy</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <i class="ace-icon fa fa-circle grey"></i>
+                                                &nbsp;
+                                                <span class="grey">Invisible</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-6"></div>
+
+
+
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-9">
+
+
+                        <div class="space-12"></div>
+
+                        <!-- #section:pages/profile.info -->
+                        <div class="profile-user-info profile-user-info-striped">
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;"> Nom et Prénom </div>
+
+                                <div class="profile-info-value" >
+                                    <span class="editable editable-click" id="username" >
+                                        <?php echo $this->user->nomUser . ' ' . $this->user->prenomUser; ?> 
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;"> Login</div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click" id="login">
+                                        <?php echo $this->user->login; ?> 
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+
+                                <div class="profile-info-name" style="text-align: center;"> Mail </div>
+
+                                <div class="profile-info-value">
+
+
+                                    <span class="editable editable-click"  id="mail">
+                                        <span class="glyphicon glyphicon-envelope"></span>
+                                        <?php echo $this->user->mailUser; ?> 
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;"> Adresse </div>
+
+                                <div class="profile-info-value">
+                                    <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                    <span class="editable editable-click" id="country">
+                                        <span class="glyphicon glyphicon-home"></span>
+                                        <?php echo $this->user->adresseUser; ?> 
+                                    </span>
+
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;"> Date de naissance </div>
+
+                                <div class="profile-info-value">
+                                    <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                    <span class="editable editable-click" id="dateNaisUser">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        <?php echo $this->user->dateNaisUser; ?> 
+                                    </span>
+
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;"> Age </div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click" id="age">
+
+
+                                        <?php
+                                        $from = new DateTime($this->user->dateNaisUser);
+                                        $to = new DateTime('today');
+                                        echo $from->diff($to)->y . " years ";
+                                        ?>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;"> Lieu de naissance </div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click" id="lieuNaisUser">
+                                        <?php echo $this->user->lieuNaisUser; ?>  </span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;"> Téléphone </div>
+
+                                <div class="profile-info-value">
+
+                                    <span class="editable editable-click" id="login">
+                                        <span class="glyphicon glyphicon-earphone"></span>
+                                        <?php echo $this->user->telUser; ?>   </span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;">Type utilisateur </div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click" id="type">
+                                        <?php
+// echo $this->escapeHtml($user->isAdmin);
+                                         switch ($user->isAdmin) {
+                                            case 1:
+                                                echo "Admin";
+                                                break;
+                                            case 2:
+                                                echo "Chef du projet";
+                                                break;
+                                            case 3:
+                                                echo "Coordinateur";
+                                                break;
+                                             case 4:
+                                                echo "Superviseur";
+                                                break;
+                                        }
+                                        ?> </span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name" style="text-align: center;">Etat </div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click" id="etat">
+                                        <?php
+                                        if ($user->etat == 1) {
+                                            echo $this->translate('Actif');
+                                        } else {
+                                            echo $this->translate('Inactif');
+                                        }
+                                        ?> </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- /section:pages/profile.info -->
+                        <div class="space-20"></div>
+
+
+
+
+                        <div style="text-align: right;">
+                            <button class="btn btn-primary">
+                                <a style="  color: white;"  href="<?php echo $this->url('user', array('action' => 'modifier')); ?>"  >
+                                    <?php echo $this->translate('Modifer'); ?>
+                                </a>   
+
+                            </button>
+                            <button class="btn btn-primary">
+                                <a  style="  color: white;" href="<?php echo $this->url('user', array('action' => 'editpwd')); ?>"  >
+                                    <?php echo $this->translate('Changer le mot de passe'); ?>
+                                </a>
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+
+</div>

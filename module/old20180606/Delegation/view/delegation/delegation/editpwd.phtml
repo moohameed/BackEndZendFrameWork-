@@ -1,0 +1,103 @@
+
+<div class="page-content-area">
+    <div class="page-header">
+        <h1>
+            <?php echo $this->translate('Changer mot de passe'); ?> 
+
+        </h1>
+
+        <?php
+        $form = $this->form;
+        $form->setAttribute('action', $this->url('user', array('action' => 'editpwd')));
+        $form->prepare();
+
+        echo $this->form()->openTag($form) . PHP_EOL;
+        ?>
+
+        <?php echo $this->formInput($form->get('idUser')); ?>
+    </div><!-- /.page-header -->
+
+    <div class=" col-xs-12 col-lg-12">
+        
+        <?php if ($this->messageErreur == "true") {
+                                                ?>
+                                                <div class="alert alert-block alert-danger">
+                                                    <p style="color: red;font-weight: bold;">
+                                                        <?php echo $this->translate($this->message) ?>
+                                                    </p>
+                                                </div>
+                                            <?php } ?>
+                                               
+        
+        
+        <?php if ($this->success == "true") {
+                                                ?>
+                                            
+                                                <div class="alert alert-block alert-success">
+                                                    <p style="font-weight: bold;">
+                                                        <?php echo $this->translate($this->messageSuccess) ?>
+                                                    </p>
+                                                </div>
+                                            <?php } ?>
+        
+        
+        <div class="profile-user-info profile-user-info-striped">
+            <div class="profile-info-row">
+                <div class="profile-info-name"  style="text-align: center;">
+                    <?php echo $this->formLabel($form->get('pwd')); ?> 
+                </div>
+
+                <div class="profile-info-value">
+                    <span class="editable editable-click" id="username">
+                        <?php
+                        echo $this->formInput($form->get('pwd'));
+                        echo $this->formElementErrors($form->get('pwd'));
+                        ?>
+                    </span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"  style="text-align: center;"> <?php echo $this->formLabel($form->get('pwd1')); ?> </div>
+
+                <div class="profile-info-value">
+                    <span class="editable editable-click" id="country"><?php
+                        echo $this->formInput($form->get('pwd1'));
+                        echo $this->formElementErrors($form->get('pwd1'));
+                        ?></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"  style="text-align: center;"> <?php echo $this->formLabel($form->get('pwd2')); ?> </div>
+
+                <div class="profile-info-value">
+                    <span class="editable editable-click" id="country"><?php
+                        echo $this->formInput($form->get('pwd2'));
+                        echo $this->formElementErrors($form->get('pwd2'));
+                        ?></span>
+                </div>
+               
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+<div class="space-20"></div>
+
+     <div style="text-align: right;">
+      <button class="btn btn-primary" style="  margin-right: 5px;">
+     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    <a style="  color: white;"  href="/user/profil"  >
+                        <?php echo $this->translate('Retour'); ?>
+                    </a>   
+</button>
+ <?php
+                echo $this->formInput($form->get('submit'));
+                echo $this->formElementErrors($form->get('submit'));
+?>
+    </div>
+    <br><br><br>
+                            
+</div>
+</div>

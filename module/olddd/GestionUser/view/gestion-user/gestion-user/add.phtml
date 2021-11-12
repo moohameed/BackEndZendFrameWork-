@@ -1,0 +1,211 @@
+<div class="page-header">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                <?php echo $this->translate('Ajouter un utilisateur'); ?> 
+
+            </h1>
+        </div><!-- /.page-header -->
+
+
+        <?php
+        $form = $this->form;
+        $form->setAttribute('action', $this->url('user', array('action' => 'add')));
+        $form->prepare();
+
+        echo $this->form()->openTag($form) . PHP_EOL;
+        ?>
+        <?php echo $this->formInput($form->get('idUser')); ?>
+
+        <div class=" col-xs-12 col-lg-12">
+
+            <?php if ($this->messageErreur == "true") {
+                ?>
+                <div class="alert alert-block alert-danger">
+                    <p style="color: red;font-weight: bold;">
+                        <?php echo $this->translate($this->message) ?>
+                    </p>
+                </div>
+            <?php } ?>
+
+            <?php if ($this->success == "true") {
+                ?>
+
+                <div class="alert alert-block alert-success">
+                    <p style="font-weight: bold;">
+                        <?php echo $this->translate($this->messageSuccess) ?>
+                    </p>
+                </div>
+            <?php } ?>
+
+        </div>
+        <div class=" col-xs-12 col-lg-6">
+            <div class="profile-user-info profile-user-info-striped">
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        <?php echo $this->formLabel($form->get('nomUser')); ?> 
+                    </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="username">
+                            <?php
+                            echo $this->formInput($form->get('nomUser'));
+                            echo $this->formElementErrors($form->get('nomUser'));
+                            ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 
+                        <?php echo $this->formLabel($form->get('prenomUser')); ?> 
+                    </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="username">
+                            <?php
+                            echo $this->formInput($form->get('prenomUser'));
+                            echo $this->formElementErrors($form->get('prenomUser'));
+                            ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('mailUser')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formInput($form->get('mailUser'));
+                            echo $this->formElementErrors($form->get('mailUser'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('mailUser1')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formInput($form->get('mailUser1'));
+                            echo $this->formElementErrors($form->get('mailUser1'));
+                            ?></span>
+                    </div>
+                </div>
+
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('isAdmin')); ?>  </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="about"> <?php
+                            echo $this->formElement($form->get('isAdmin'));
+                            echo $this->formElementErrors($form->get('isAdmin'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('etat')); ?></div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="signup"><?php
+                            echo $this->formElement($form->get('etat'));
+                            echo $this->formElementErrors($form->get('etat'));
+                            ?></span>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class=" col-xs-12 col-lg-6">
+            <div class="profile-user-info profile-user-info-striped">
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('telUser')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formInput($form->get('telUser'));
+                            echo $this->formElementErrors($form->get('telUser'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('dateNaisUser')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formInput($form->get('dateNaisUser'));
+                            echo $this->formElementErrors($form->get('dateNaisUser'));
+                            ?></span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('lieuNaisUser')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="country"><?php
+                            echo $this->formInput($form->get('lieuNaisUser'));
+                            echo $this->formElementErrors($form->get('lieuNaisUser'));
+                            ?></span>
+                    </div>
+                </div>
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('adresseUser')); ?> </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="login">   <?php
+                            echo $this->formInput($form->get('adresseUser'));
+                            echo $this->formElementErrors($form->get('adresseUser'));
+                            ?></span>
+                    </div>
+                </div>
+
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('image')); ?></div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="signup"><?php
+                            echo $this->formElement($form->get('image'));
+                            echo $this->formElementErrors($form->get('image'));
+                            ?></span>
+                    </div>
+                </div>
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> <?php echo $this->formLabel($form->get('login')); ?></div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="signup"><?php
+                            echo $this->formElement($form->get('login'));
+                            echo $this->formElementErrors($form->get('login'));
+                            ?></span>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <div class="space-20"></div>
+        <div style="text-align: right;">
+            <button class="btn btn-primary" style="  margin-right: 5px;">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                <a style="  color: white;"  href="/user"  >
+                    <?php echo $this->translate('Retour'); ?>
+                </a>   
+            </button>
+            <?php
+            echo $this->formInput($form->get('submit'));
+            echo $this->formElementErrors($form->get('submit'));
+            ?>
+
+
+        </div>
+    </div>
+</div>

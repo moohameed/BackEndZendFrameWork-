@@ -1,0 +1,43 @@
+ul { list-style: none; }
+
+.example {	
+	padding: 0 20px;
+	float: left;		
+}
+
+.wrapper {
+	width: 133px;
+	margin: 0 auto;
+}
+
+div.button {
+	height: 20px;	
+	width: 200px;
+	background: url(/img/button.png) 0 0;
+	font-size: 14px;
+	color: #FFF;
+	text-align: center;
+	padding-top: 0px;
+}
+/* 
+We can't use ":hover" preudo-class because we have
+invisible file input above, so we have to simulate
+hover effect with javascript. 
+ */
+div.button.hover {
+	background: url(/img/button.png) 0 56px;
+	color: #2e6e9e;	
+}
+#button2.hover, #button4.hover {
+	text-decoration:underline;
+}
+.messageerror {
+    border: 1px solid #e9c59b;
+    color: #e3302c;
+	border-radius: 3px;
+    font-weight: bold;
+    margin: 0 0 5px 5px;
+    overflow: hidden;
+    padding: 10px 15px 0 40px;
+	width:370px;
+}

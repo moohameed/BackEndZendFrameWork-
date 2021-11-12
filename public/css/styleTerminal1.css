@@ -1,0 +1,104 @@
+
+.textbox111 {
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    margin: 0 10px 0 20px;
+    padding: 2px;
+    background: none repeat scroll 0 0 #F3F3F3;
+}
+.tablecont
+{
+    background: none repeat scroll 0 0 #F3F3F3;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 14px;
+    line-height: normal;
+    padding: 12px 15px;
+
+}
+
+.tablecont tr td
+{
+    padding-right:  3px;
+    padding-left: 3px;
+    vertical-align: top;
+}
+.titleLine td
+{
+    height: 35px;
+    font-size: 11px !important;
+}
+.titleLine td label
+{
+    font-size: 11px !important;
+}
+.dataLine td
+{
+    padding-bottom: 20px;
+}
+zzz{
+    color:#223E6D;
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:11px;
+}
+
+.rowzzz
+{
+margin-top: 3px
+}
+
+label
+{
+    width:100%;
+    padding-bottom: 3px;
+    height: 25px;
+    margin-bottom: 3px !important;
+}
+select,input[type="text"]
+{
+    height: 25px !important;
+    width: 95% !important;
+    padding: 2px !important;
+    margin-bottom: 3px !important;
+}
+.variables
+{
+    margin-top: -30px;
+    margin-left: 100px;
+    margin-bottom: -10px;
+}
+.variables li
+{
+    display: inline;
+    cursor: pointer;
+    color: #E88221;
+}
+
+.variables li:hover
+{
+    text-decoration: underline;
+}
+
+.colored
+{
+     background: #F3F3F3;
+}
+.ui-icon-Cancel {
+ background: url("/img/Close-icon.png") repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+ height: 24px;
+ width: 24px;
+ cursor: pointer;
+ padding: 12px !important;
+ font-size: 0px !important;
+ border: hidden !important;
+ box-shadow: none !important;
+}
+.ui-icon-Cancel:hover {
+ background: url("/img/Close-icon.png") repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+ height: 24px;
+ width: 24px;
+ cursor: pointer;
+ padding: 12px !important;
+ font-size: 0px !important;
+ border: hidden !important;
+}

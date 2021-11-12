@@ -1,0 +1,462 @@
+<?php if($user->isAdmin == 1) {?>
+<?php
+$title = $this->translate('Delegations');
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+			window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+                
+                <script src="/assets/js/jquery.dataTables.min.js"></script>
+		<script src="/assets/js/jquery.dataTables.bootstrap.js"></script>
+                <script type="text/javascript">
+			jQuery(function($) {
+				var oTable1 = $('#sample-table-2')
+				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+				.dataTable( {
+                                    
+					bAutoWidth: false,
+					"aoColumns": [
+					  { "bSortable": false },
+					  null, null,null, null, null,
+					  { "bSortable": false }
+					],
+					"aaSorting": [],
+                                        
+			
+					//,
+					//"sScrollY": "200px",
+					//"bPaginate": false,
+			
+					//"sScrollX": "100%",
+					//"sScrollXInner": "120%",
+					//"bScrollCollapse": true,
+					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
+			
+					//"iDisplayLength": 50
+			    } );
+				/**
+				var tableTools = new $.fn.dataTable.TableTools( oTable1, {
+					"sSwfPath": "../../copy_csv_xls_pdf.swf",
+			        "buttons": [
+			            "copy",
+			            "csv",
+			            "xls",
+						"pdf",
+			            "print"
+			        ]
+			    } );
+			    $( tableTools.fnContainer() ).insertBefore('#sample-table-2');
+				*/
+			
+			
+				$(document).on('click', 'th input:checkbox' , function(){
+					var that = this;
+					$(this).closest('table').find('tr > td:first-child input:checkbox')
+					.each(function(){
+						this.checked = that.checked;
+						$(this).closest('tr').toggleClass('selected');
+					});
+				});
+			
+			
+				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('table')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					//var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			
+			})
+                        
+                        function fnFeaturesInit ()
+			{
+				/* Not particularly modular this - but does nicely :-) */
+				$('ul.limit_length>li').each( function(i) {
+					if ( i > 10 ) {
+						this.style.display = 'none';
+					}
+				} );
+				
+				$('ul.limit_length').append( '<li class="css_link">Show more<\/li>' );
+				$('ul.limit_length li.css_link').click( function () {
+					$('ul.limit_length li').each( function(i) {
+						if ( i > 5 ) {
+							this.style.display = 'list-item';
+						}
+					} );
+					$('ul.limit_length li.css_link').css( 'display', 'none' );
+				} );
+			}
+			
+			//SyntaxHighlighter.config.clipboardSwf = 'media/javascript/syntax/clipboard.html';
+				//SyntaxHighlighter.all();
+			} );
+		</script>
+
+<div class="page-content-area">
+    <div class="page-header">
+        <h1>
+            <?php echo $this->translate('Gestion Municipalité'); ?> 
+
+        </h1>
+    </div>
+    <p><a href="<?php
+        echo $this->url('delegation', array(
+            'action' => 'add'));
+        ?>"> <h2> <?php echo $this->translate('+ Ajouter Municipalité'); ?></h3></a>
+    </p>
+
+    <div class="row">
+        <div class="col-xs-12">
+
+            
+
+            <div class="modal-body no-padding">
+
+                <!--recherche-->
+                <link rel="stylesheet" type="text/css" href="/datatable/media/css/jquery.dataTables.css">
+
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="/datatable/media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="/datatable/media/js/jquery.dataTables.js"></script>
+	
+	<script type="text/javascript" language="javascript" class="init">
+
+$(document).ready(function() {
+	$('#example').dataTable({
+            "bJQueryUI": true,
+					"sPaginationType": "full_numbers",
+                                        "sDom": '<"clear"><"H"Tflr>t<"F"ip>',
+                                        "oTableTools": { "sSwfPath": "/mediadatatab/swf/copy_cvs_xls_pdf.swf"},
+             "oLanguage": { "sUrl": "/mediadatatab/lange/haithemfr.txt" },
+        });
+} );
+
+	</script>	
+        <style>
+            .dataTables_info{
+               clear: inherit !important; 
+            }
+        </style>
+
+        <table style="clear: inherit" cellpadding="0" cellspacing="0" border="0" class="display" id="example" style="width:100%">
+				 <thead>
+               
+                        <tr>
+                          
+                            <th>Nom </th>
+                            <th>Nombre chaise </th>
+                            <th>Nombre listes </th>
+                            <th>Taux participation</th>
+                            <th>Votes blancs </th>
+                            <th>Votes annulés</th>
+                            <th>Nombre inscrits</th>
+                            <th>Gouvernorat</th>                          
+                            <th>Action</th>
+                    </thead>
+
+                    </tr>
+                    <tbody>
+
+
+                        <?php foreach ($delegations as $delegation) : ?>
+                            <tr>
+                                <td><?php echo $this->escapeHtml($delegation->nomArabe); ?></td>
+                                <td><?php echo $this->escapeHtml($delegation->nbrChaise); ?></td>
+                                <td><?php echo $this->escapeHtml($delegation->nbrListes); ?></td>
+                                 <td><?php echo $this->escapeHtml($delegation->tauxParticipation); ?> %</td>
+                                 <td><?php echo $this->escapeHtml($delegation->nbrVotesBlancs); ?></td>
+                                 <td><?php echo $this->escapeHtml($delegation->nbrVotesAnnules); ?></td>
+                                 <td><?php echo $this->escapeHtml($delegation->nbrInscrits); ?></td>
+                                <td><?php echo $this->escapeHtml($delegation->nomGouvernorat); ?> / <?php echo $this->escapeHtml($delegation->nomArabeGouvernorat); ?></td>
+                              
+
+
+                                <td>
+                                    <a href="<?php echo $this->url('delegation', array('action' => 'edit', 'id' => $delegation->id));
+                                    ?>" class="tooltip-success" data-rel="tooltip" title="edit" >
+                                       
+
+                                        <span class="green">
+                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                        </span>
+                                    </a>
+                                  
+                            
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+
+            </div>
+           
+
+        </div>
+
+
+    </div>
+ 
+</div>
+
+
+
+
+                                        <?php } else{ ?>
+                <?php
+$title = $this->translate('Users');
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+			window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+                
+                <script src="/assets/js/jquery.dataTables.min.js"></script>
+		<script src="/assets/js/jquery.dataTables.bootstrap.js"></script>
+                <script type="text/javascript">
+			jQuery(function($) {
+				var oTable1 = $('#sample-table-2')
+				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+				.dataTable( {
+                                    
+					bAutoWidth: false,
+					"aoColumns": [
+					  { "bSortable": false },
+					  null, null,null, null, null,
+					  { "bSortable": false }
+					],
+					"aaSorting": [],
+                                        
+			
+					//,
+					//"sScrollY": "200px",
+					//"bPaginate": false,
+			
+					//"sScrollX": "100%",
+					//"sScrollXInner": "120%",
+					//"bScrollCollapse": true,
+					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
+			
+					//"iDisplayLength": 50
+			    } );
+				/**
+				var tableTools = new $.fn.dataTable.TableTools( oTable1, {
+					"sSwfPath": "../../copy_csv_xls_pdf.swf",
+			        "buttons": [
+			            "copy",
+			            "csv",
+			            "xls",
+						"pdf",
+			            "print"
+			        ]
+			    } );
+			    $( tableTools.fnContainer() ).insertBefore('#sample-table-2');
+				*/
+			
+			
+				$(document).on('click', 'th input:checkbox' , function(){
+					var that = this;
+					$(this).closest('table').find('tr > td:first-child input:checkbox')
+					.each(function(){
+						this.checked = that.checked;
+						$(this).closest('tr').toggleClass('selected');
+					});
+				});
+			
+			
+				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('table')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					//var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			
+			})
+                        
+                        function fnFeaturesInit ()
+			{
+				/* Not particularly modular this - but does nicely :-) */
+				$('ul.limit_length>li').each( function(i) {
+					if ( i > 10 ) {
+						this.style.display = 'none';
+					}
+				} );
+				
+				$('ul.limit_length').append( '<li class="css_link">Show more<\/li>' );
+				$('ul.limit_length li.css_link').click( function () {
+					$('ul.limit_length li').each( function(i) {
+						if ( i > 5 ) {
+							this.style.display = 'list-item';
+						}
+					} );
+					$('ul.limit_length li.css_link').css( 'display', 'none' );
+				} );
+			}
+			
+			//SyntaxHighlighter.config.clipboardSwf = 'media/javascript/syntax/clipboard.html';
+				//SyntaxHighlighter.all();
+			} );
+		</script>
+
+<div class="page-content-area">
+    <div class="page-header">
+        <h1>
+            <?php echo $this->translate('Gestion utilisateurs  '); ?> 
+
+        </h1>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-xs-12">
+
+            
+
+            <div class="modal-body no-padding">
+
+                <!--recherche-->
+                <link rel="stylesheet" type="text/css" href="/datatable/media/css/jquery.dataTables.css">
+
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="/datatable/media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="/datatable/media/js/jquery.dataTables.js"></script>
+	
+	<script type="text/javascript" language="javascript" class="init">
+
+$(document).ready(function() {
+	$('#example').dataTable({
+            "bJQueryUI": true,
+					"sPaginationType": "full_numbers",
+                                        "sDom": '<"clear"><"H"Tflr>t<"F"ip>',
+                                        "oTableTools": { "sSwfPath": "/mediadatatab/swf/copy_cvs_xls_pdf.swf"},
+             "oLanguage": { "sUrl": "/mediadatatab/lange/haithemfr.txt" },
+        });
+} );
+
+	</script>	
+        <style>
+            .dataTables_info{
+               clear: inherit !important; 
+            }
+        </style>
+
+        <table style="clear: inherit" cellpadding="0" cellspacing="0" border="0" class="display" id="example" style="width:100%">
+				 <thead>
+               
+                        <tr>
+                            <th>Login</th>
+                            <th>Nom </th>
+                            <th>Prenom </th>
+                            <th>Mail</th>
+                           <!-- <th>Adresse </th>-->
+                          <!--   <th>Date de naissance</th>-->
+                           <!--  <th>Lieu de Naissance</th>-->
+                            <th>télephone</th>
+                          <!--  <th>image</th>-->
+                            <th>Type</th>
+                            <th>Etat</th>
+                            <th>Action</th>
+                    </thead>
+
+                    </tr>
+                    <tbody>
+
+
+                        <?php foreach ($users as $user) : ?>
+                            <tr>
+                                <td><?php echo $this->escapeHtml($user->login); ?></td>
+                                <td><?php echo $this->escapeHtml($user->nomUser); ?></td>
+                                <td><?php echo $this->escapeHtml($user->prenomUser); ?></td>
+                                <td><?php echo $this->escapeHtml($user->mailUser); ?></td>
+                                <!--<td><?php //echo $this->escapeHtml($user->adresseUser); ?></td>
+                                <td><?php //echo $this->escapeHtml($user->dateNaisUser); ?></td>
+                                <td><?php //echo $this->escapeHtml($user->lieuNaisUser); ?></td>-->
+                                <td><?php echo $this->escapeHtml($user->telUser); ?></td>
+                                <!--<td><?php //echo $this->escapeHtml($user->image); ?></td>-->
+
+
+                                <td>
+                                    <?php
+                                    // echo $this->escapeHtml($user->isAdmin);
+                                    switch ($user->isAdmin) {
+                                        case 1:
+                                            echo "Admin";
+                                            break;
+                                        case 2:
+                                            echo "Validateur";
+                                            break;
+                                        case 3:
+                                            echo "Employé";
+                                            break;
+                                    }
+                                    ?>
+
+                                </td>
+                                <td>
+                                    <?php
+                                    if ($user->etat == 1) {
+                                        echo $this->translate('Actif');
+                                    } else {
+                                        echo $this->translate('Inactif');
+                                    }
+                                    ?>
+                                </td>
+                                    <td>
+                             &nbsp;
+                            <a href="<?php echo $this->url('user', array('action' => 'detail', 'idUser' => $user->idUser));
+                               ?>" class="tooltip-error" data-rel="tooltip" title="<?php echo $this->translate('Détails'); ?>" >
+                               <?php echo $this->translate('Détails'); ?>
+                               <span class="orange">
+                                                                <i class="glyphicon glyphicon-list"></i>
+                                                            </span>
+                            </a>
+                                </td>
+
+
+
+                               
+                            </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+
+            </div>
+           
+
+        </div>
+
+
+    </div>
+ 
+</div>
+
+
+
+
+
+                                        <?php } ?>
